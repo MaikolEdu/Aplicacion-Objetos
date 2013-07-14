@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-	SGI / Listar Clientes
+	SGI / Listar Reclamos
 {% endblock%}
 
 {% block contenido %}
@@ -10,7 +10,7 @@
 
 <div class="jumbotron">
     <p>
-    	<h2>REPORTE DE NUESTROS CLIENTES</h2>
+    	<h2>REPORTE DE RECLAMOS</h2>
     </p>
 </div>
 
@@ -24,21 +24,21 @@
 				<table border="1" id="tblTabla" >
 					<thead>
 						<tr>
-					          <th>Nombres</th>
-					          <th>Apellidos</th>
-					          <th>Ver detalle</th>  
+					          <th>Cliente</th>
+					          <th>Fecha</th>
+					          <th>Ver Detalle</th> 
 						</tr>
 					</thead>
 					<tbody>
 						 {% for usuario in usuarios %}
 						        <tr>
-						          <td>{{usuario.nombre}}</td>
-						          <td>{{usuario.dni}}</td>
-						          <td class="center" style="text-align:center;">
+						          <td>{{usuario.cliente.nombre}}</td>
+						          <td>{{usuario.fecha}}</td>
+									<td class="center" style="text-align:center;">
 						            <a class="btn btn-warning " href="/cliente/listar/{{usuario.id}}">
 						              <i class="icon-align-justify icon-white"></i>
 						            </a>  
-						          </td>
+						          </td>	
 								</tr>
 						      {% endfor %}
 					</tbody>

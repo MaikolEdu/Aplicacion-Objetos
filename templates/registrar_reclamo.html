@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	SGI / Registrar Reclamo
+{% endblock%}
+
+{% block contenido %}
+
+<div class="jumbotron">
+    <p>
+    	<h2>REGISTRAR RECLAMO</h2>
+    </p>
+</div>
+<form action="" method="POST">
+{% csrf_token %}
+<div class="row-fluid">
+  <div class="span4">
+    <p>Descripcion del Reclamo</p>
+  </div>
+  <div class="span8">
+    <textarea name="descripcion" cols="30" rows="10" style="width:80%;" ></textarea>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span4">
+    <p>Cliente</p>
+  </div>
+  <div class="span8">
+    {{formulario.cliente}}
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span4">
+    <p>recepcionista</p>
+  </div>
+  <div class="span8">
+    {{formulario.recepcionista}}
+  </div>
+</div>
+
+<button type="submit" class="btn btn-primary">Registrar</button>
+
+
+
+</form>
+
+{% endblock %}

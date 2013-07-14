@@ -13,6 +13,12 @@ urlpatterns = patterns('',
 	url(r'^$', 'principal.views.inicio'),
 	url(r'^cliente/registrar/$', 'principal.views.registrar_cliente'),
 	url(r'^cliente/listar/$', 'principal.views.listar_cliente'),
-
-
+	url(r'^recepcionista/registrar/$', 'principal.views.registrar_recepcionista'),
+	url(r'^recepcionista/listar/$', 'principal.views.listar_recepcionista'),
+	url(r'^conductor/registrar/$', 'principal.views.registrar_conductor'),
+	url(r'^conductor/listar/$', 'principal.views.listar_conductor'),
+	url(r'^transporte/registrar/$', 'principal.views.registrar_transporte'),
+	url(r'^transporte/listar/$', 'principal.views.listar_transporte'),
+	url(r'^reclamo/registrar/$', 'principal.views.registrar_reclamo'),
+	url(r'^reclamo/listar/$', 'principal.views.listar_reclamo'),
 )
