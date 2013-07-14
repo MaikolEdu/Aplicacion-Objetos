@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	SGI / Listar Clientes
+{% endblock%}
+
+{% block contenido %}
+<link rel="stylesheet" href="{{STATIC_URL}}css/tabla.css">
+
+
+<div class="jumbotron">
+    <p>
+    	<h2>REPORTE DE NUESTROS CLIENTES</h2>
+    </p>
+</div>
+
+
+
+			<div id="divTabla">
+				<label for="txtBuscar">Buscar: </label>
+				<input type="search" id="txtBuscar" autofocus
+				placeholder="Digite el texto que desea encontrar y presione ENTER. Para cancelar la tecla ESCAPE.">
+				
+				<table border="1" id="tblTabla" >
+					<thead>
+						<tr>
+					          <th>Nombres</th>
+					          <th>Apellidos</th>
+					          <th>Ver detalle</th>  
+						</tr>
+					</thead>
+					<tbody>
+						 {% for usuario in usuarios %}
+						        <tr>
+						          <td>{{usuario.nombre}}</td>
+						          <td>{{usuario.dni}}</td>
+						          <td class="center" style="text-align:center;">
+						            <a class="btn btn-warning " href="/cliente/listar/{{usuario.id}}">
+						              <i class="icon-align-justify icon-white"></i>
+						            </a>  
+						          </td>
+								</tr>
+						      {% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+
+ <script src="http://www.lewebmonster.com/ejemplos/buscar-en-tablas-jquery/js/ext/jquery-1.8.2.min.js"></script>
+
+<script src="{{STATIC_URL}}js/buscar.js"></script>
+{% endblock %}

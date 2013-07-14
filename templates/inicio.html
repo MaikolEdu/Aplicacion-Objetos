@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Sistema de Gestion Iparraguirre
+{% endblock%}
+
+{% block contenido %}
+
+      <div class="jumbotron">
+        <h2>El mejor Servicio en Nuestras Manos</h2>
+        <img src="{{MEDIA_URL}}carro.jpg" alt="">
+      </div>
+
+      <hr>
+
+      <!-- Example row of columns -->
+      <div class="row-fluid">
+        <div class="span4">
+          <h2>VISION</h2>
+          <p>Brindar el servicio de transporte de carga a nivel local con profesionalismo, gran voluntad y destreza asegurando el transporte de su mercadería en forma oportuna, confiable y segura.</p>
+        </div>
+        <div class="span8">
+          <h2>MISION</h2>
+          <p>Nuestra empresa está dirigida por un grupo de profesionales altamente calificados, quienes están en condiciones de poner oportunamente a su disposición todas las herramientas necesarias para brindarle a usted el mejor servicio, acompañado de un trato amable y confiable. La pieza fundamental de nuestro servicio lo constituye nuestro personal de Choferes, los cuales han sido capacitados y entrenados para cumplir la misión encomendada.</p>
+       </div>
+      </div>
+
+
+{% endblock %}

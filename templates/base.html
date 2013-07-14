@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock title%}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/yo.css">
+    <link rel="stylesheet" href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css">
+  </head>
+
+  <body>
+
+    <!-- NAVBAR
+    ================================================== -->
+    <div class="navbar-wrapper">
+      <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+      <div class="container">
+        <h2>Transportes y Servicios Iparraguirre</h2>
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+                  
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="active"><a href="/">Inicio</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clientes <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/cliente/registrar">Registrar</a></li>
+                    <li><a href="/cliente/listar">Listar</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Comprobantes <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Registrar</a></li>
+                    <li><a href="#">Buscar</a></li>
+                  </ul>
+                </li>
+                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guia Remision <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Registrar</a></li>
+                    <li><a href="#">Buscar</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ingresos <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Reporte Estadistico</a></li>
+                    <li><a href="#">Reporte por mes</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar -->
+
+        {% block contenido %}{% endblock %}
+      <!-- Jumbotron -->
+
+
+      <hr>
+
+      <div class="footer">
+        <p>&copy; INFORMATICA - UNT - 2013</p>
+      </div>
+      </div> <!-- /.container -->
+    </div><!-- /.navbar-wrapper -->
+
+
+      
+
+    <script src="http://twitter.github.io/bootstrap/assets/js/jquery.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-transition.js" ></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-alert.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-modal.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-tab.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-popover.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-button.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-carousel.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>

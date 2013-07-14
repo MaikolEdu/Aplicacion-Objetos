@@ -1,0 +1,40 @@
+body {
+      padding-top: 10px;
+      padding-bottom: 60px;
+
+    }
+
+      .container {
+        margin: 0 auto;
+        max-width: 1000px;
+      }
+      .container > hr {
+        margin: 10px 0;
+      }
+      
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+
+
+      img{
+        max-width: 30%;
+        height: auto;
+      }
+    
+      .jumbotron {
+        margin: 20px 0;
+        text-align: center;
+      }
+      .jumbotron h2 {
+        font-size: 30px;
+        line-height: 1;
+      }
+      .jumbotron .lead {
+        font-size: 24px;
+        line-height: 1.25;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
