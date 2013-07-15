@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	SGI / Registrar Conductor
+{% endblock%}
+
+{% block contenido %}
+
+<div class="jumbotron">
+    <p>
+    	<h2>REGISTRAR GUIA REMISION</h2>
+    </p>
+</div>
+<form  method="POST">
+{% csrf_token %}
+<div class="row-fluid">
+  <div class="span4">
+    <p>Nro Guia Remision.</p>
+    <span class="input-large uneditable-input">{{contador}}</span>
+  </div>
+  <div class="span4">
+    <p>Nro de Comprobante</p>
+    <select id="id_comprobante" name="comprobante">
+      <option value="" selected="selected">---------</option>
+      {% for i in comprobante %}
+      <option value="{{i.id}}">{{i.id}}</option>
+      {% endfor %}
+    </select>
+  </div>
+    <div class="span4">
+    <p>Destino</p>
+    <span class="input-large uneditable-input" id="eti1"></span>
+    <input type="hidden" id="eti2" name="destino" value="">
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span4">
+    <p>Vehiculo</p>
+    {{formulario.vehiculo}}
+    {{formulario.vehiculo.errors}}
+  </div>
+    <div class="span4">
+    <p>Fecha de Ingreso</p>
+    <span class="input-large uneditable-input">{{fecha}}</span>
+  </div>
+    
+  <div class="span4">
+    <p>Chofer</p>
+    {{formulario.conductor}}
+    {{formulario.conductor.errors}}
+  </div>
+</div>
+
+<div class="row-fluid">
+
+  <div class="span4">
+    <p>Fecha de Salida</p>
+    <input type="date" name="fechasalida">
+    {{formulario.fechasalida.errors}}
+
+  </div> 
+<div class="span4">
+    <p>Destinatario</p>
+    <input type="text" name="destinatario" placeholder="Ingrese Nombre" class="input-xxlarge">
+    {{formulario.destinatario.errors}}
+  </div>
+</div>
+
+<button type="submit" class="btn btn-primary">Registrar</button>
+
+
+
+</form>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+  $(document).on("ready",mievento);
+
+function mievento()
+{
+  $("#id_comprobante").on("click",evento);
+}
+
+function evento()
+{
+  var id=$(this).val();
+  $.ajax({
+    data:{'id_comprobante':id},
+    type:"get",
+    url:'/ajax_ver_comprobante/',
+    
+    success:function(data)
+    {  
+    $("#eti1").html(data.ciudad);
+    var l=$("#eti2").attr("value",data.ciudad)
+    console.log(data.ciudad);
+    console.log(l);
+    }
+  }); 
+  
+  }
+
+  
+
+</script>
+
+{% endblock %}

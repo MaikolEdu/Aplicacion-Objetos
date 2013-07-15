@@ -23,3 +23,11 @@ class VehiculoForm(ModelForm):
 class ReclamoForm(ModelForm):
 	class Meta:
 		model= Reclamo
+
+class ComprobanteForm(ModelForm):
+	class Meta:
+		model= Comprobante
+
+class GuiaRemisionForm(ModelForm):
+	class Meta:
+		model= GuiaRemision

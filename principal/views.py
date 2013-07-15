@@ -3,6 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from .forms import *
+from datetime import date
+from django.utils import simplejson as json
+from django.core import serializers
 
 
 def inicio(request):
@@ -93,3 +96,76 @@ def listar_reclamo(request):
 	usuarios = Reclamo.objects.all()
 	print usuarios
 	return render_to_response('listar_reclamo.html',{'usuarios':usuarios},context_instance=RequestContext(request))
+
+#-----------------------------------------COMPROBANTE
+#----------------------------------------------------
+def registrar_comprobante(request):
+	fecha= date.today()
+	contador=Comprobante.objects.all().count() +1
+	if request.method=='POST':
+		formulario = ComprobanteForm(request.POST)
+		if formulario.is_valid():
+			formulario.save()
+			return HttpResponseRedirect('/')
+	else:
+		formulario = ComprobanteForm()
+	return render_to_response('registrar_comprobante.html',{'formulario':formulario,'fecha':fecha ,'contador':contador},context_instance=RequestContext(request))
+
+def listar_comprobante(request):
+	usuarios = Comprobante.objects.all()
+	return render_to_response('listar_comprobante.html',{'usuarios':usuarios},context_instance=RequestContext(request))
+
+
+
+#-----------------------------------GUIA-----REMISION
+#----------------------------------------------------
+def registrar_guiaremision(request):
+	fecha= date.today()
+	contador=GuiaRemision.objects.all().count() +1
+	comprobantes=Comprobante.objects.filter(estado=0)
+	if request.method=='POST':
+		formulario = GuiaRemisionForm(request.POST)
+		if formulario.is_valid():
+			formulario.save()
+			alterarcomprobante= Comprobante.objects.get(pk=request.POST['comprobante'])
+			alterarcomprobante.estado=1
+			alterarcomprobante.save()
+			return HttpResponseRedirect('/')
+	else:
+		formulario = GuiaRemisionForm()
+	return render_to_response('registrar_guiaremision.html',{'formulario':formulario,'comprobante':comprobantes,'fecha':fecha ,'contador':contador},context_instance=RequestContext(request))
+
+def listar_guiaremision(request):
+	usuarios = GuiaRemision.objects.all()
+	return render_to_response('listar_guiaremision.html',{'usuarios':usuarios},context_instance=RequestContext(request))
+
+
+
+
+#-----------------------------LLAMADOS AJAX----------
+#----------------------------------------------------
+def ajax_ver_recepcionista(request):	
+	if request.is_ajax():
+		clave=request.GET['id_recepcionista']
+		usuario = Recepcionista.objects.get(pk=clave) 
+		data=json.dumps({'ciudad':usuario.lugartrabajo})
+
+		return HttpResponse(data, mimetype="application/json")
+	else:
+		raise Http404
+
+
+#para chekear de que ciudad pertenece dicho comprobante emitido
+def ajax_ver_comprobante(request):	
+	if request.is_ajax():
+		clave=request.GET['id_comprobante']
+		comprobantes = Comprobante.objects.get(pk=clave)
+		if comprobantes.ciudad=='Trujillo':
+			ciudad='Pataz'
+		else:
+			ciudad='Trujillo'
+		data=json.dumps({'ciudad':ciudad})
+
+		return HttpResponse(data, mimetype="application/json")
+	else:
+		raise Http404

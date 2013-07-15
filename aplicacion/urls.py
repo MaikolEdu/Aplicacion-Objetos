@@ -21,4 +21,13 @@ urlpatterns = patterns('',
 	url(r'^transporte/listar/$', 'principal.views.listar_transporte'),
 	url(r'^reclamo/registrar/$', 'principal.views.registrar_reclamo'),
 	url(r'^reclamo/listar/$', 'principal.views.listar_reclamo'),
+	url(r'^comprobante/registrar/$', 'principal.views.registrar_comprobante'),
+	url(r'^comprobante/listar/$', 'principal.views.listar_comprobante'),
+	url(r'^guia/registrar/$', 'principal.views.registrar_guiaremision'),
+	url(r'^guia/listar/$', 'principal.views.listar_guiaremision'),	
+
+
+
+	url(r'^ajax_ver_recepcionista/$','principal.views.ajax_ver_recepcionista'),
+	url(r'^ajax_ver_comprobante/$','principal.views.ajax_ver_comprobante'),
 )

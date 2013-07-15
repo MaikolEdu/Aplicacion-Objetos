@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	SGI / Registrar Comprobante
+{% endblock%}
+
+{% block contenido %}
+
+<div class="jumbotron">
+    <p>
+    	<h2>REGISTRAR COMPROBANTE</h2>
+    </p>
+</div>
+<form  method="POST">
+{% csrf_token %}
+<div class="row-fluid">
+  <div class="span4">
+    <p>Nro .</p>
+    <span class="input-large uneditable-input">{{contador}}</span>
+  </div>
+  <div class="span4">
+    <p>Cliente</p>
+    {{formulario.cliente}}
+    {{formulario.cliente.errors}}
+  </div>
+  <div class="span4">
+    <p>Trabajador</p>
+    {{formulario.recepcionista}}
+    {{formulario.recepcionista.errors}}
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span4">
+    <p>Sucursal</p>
+    <span class="input-large uneditable-input" id="eti1"></span>
+    <input type="hidden" id="eti2" name="ciudad" value="">
+    {{formulario.ciudad.errors}}
+  </div>
+  <div class="span4">
+    <p>Fecha</p>
+    <span class="input-large uneditable-input">{{fecha}}</span>
+  </div>
+</div>
+
+<div class="row-fluid">
+   <div class="span4">
+    <p>Peso en Toneladas</p>
+    {{formulario.pesototal}}
+    {{formulario.pesototal.errors}}
+    <p>Monto en Soles(s/.) </p>
+    {{formulario.monto}}
+    {{formulario.monto.errors}}
+  </div> 
+  <div class="span8">
+    <p>Descripcion a trasladar</p>
+    <textarea name="detalle" cols="30" rows="8" style="width:80%;" ></textarea>
+    {{formulario.detalle.errors}}
+  </div>
+</div>
+
+<button type="submit" class="btn btn-primary">Registrar</button>
+
+
+
+</form>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+  $(document).on("ready",mievento);
+
+function mievento()
+{
+  $("#id_recepcionista").on("click",evento);
+}
+
+function evento()
+{
+  var id=$(this).val();
+  $.ajax({
+    data:{'id_recepcionista':id},
+    type:"get",
+    url:'/ajax_ver_recepcionista/',
+    
+    success:function(data)
+    {  
+    $("#eti1").html(data.ciudad);
+    $("#eti2").attr("value",data.ciudad)
+    console.log(data.ciudad);
+    }
+  }); 
+  
+  }
+
+  
+
+</script>
+
+{% endblock %}
