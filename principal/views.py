@@ -7,13 +7,12 @@ from datetime import date
 from django.utils import simplejson as json
 from django.core import serializers
 
-
 def inicio(request):
 	return render_to_response('inicio.html',context_instance=RequestContext(request))
 
+
 #---------------------------------------------CLIENTE
 #----------------------------------------------------
-
 def registrar_cliente(request):
 	if request.method=='POST':
 		formulario = ClienteForm(request.POST)
@@ -30,7 +29,6 @@ def listar_cliente(request):
 
 #-------------------------------------------CONDUCTOR
 #----------------------------------------------------
-
 def registrar_conductor(request):
 	if request.method=='POST':
 		formulario = ConductorForm(request.POST)
@@ -142,6 +140,24 @@ def listar_guiaremision(request):
 
 
 
+
+def reporte_grafico(request):
+	comprobantes= Comprobante.objects.all()
+	fecha_actual = date.today()
+	meses = {1:'Ene', 2:'Feb', 3:'Mar', 4:'Abr', 5:'May', 6:'Jun',
+			 7:'Jul', 8:'Ago', 9:'Sep', 10:'Oct', 11:'Nov', 12:'Dic'}
+	mi_data=[]
+	for key,item in meses.iteritems():
+		grafico_mes=comprobantes.filter(fecha__year=fecha_actual.year,fecha__month=key)
+		suma=0.00
+		for indice2,elemento2 in enumerate(grafico_mes):
+			suma= suma + float(elemento2.monto)
+		mi_data.append({'mes':item,
+						'cantidad':suma,		
+						})
+	print mi_data
+	return render_to_response('reporte_grafico.html',{'datos':mi_data},context_instance=RequestContext(request))
+
 #-----------------------------LLAMADOS AJAX----------
 #----------------------------------------------------
 def ajax_ver_recepcionista(request):	
@@ -169,3 +185,4 @@ def ajax_ver_comprobante(request):
 		return HttpResponse(data, mimetype="application/json")
 	else:
 		raise Http404
+

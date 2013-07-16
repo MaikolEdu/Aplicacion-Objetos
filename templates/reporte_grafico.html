@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	SGI / Reporte de Ingresos
+{% endblock %}
+
+
+{% block contenido %}
+
+
+<div class="jumbotron">
+    <p>
+    	<h2>REPORTE GRAFICO DE INGRESOS POR MES AÑO 2013</h2>
+    </p>
+</div>
+
+
+
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() 
+      {
+        var data = google.visualization.arrayToDataTable([
+          ['Mes', 'Ingreso'],
+
+          {% for dato in datos %}
+          [ '{{dato.mes}}', parseFloat({{dato.cantidad}}) ],           
+
+          {% endfor %}
+          
+        ]);
+
+        var options = {
+          title: 'Ingresos Mensuales',
+          hAxis: {title: 'Meses', titleTextStyle: {color: 'blue'}}
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
+<div id="chart_div" style="width: 100%; height: 500px;"></div>
+
+{% endblock %}

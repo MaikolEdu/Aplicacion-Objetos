@@ -24,7 +24,8 @@ urlpatterns = patterns('',
 	url(r'^comprobante/registrar/$', 'principal.views.registrar_comprobante'),
 	url(r'^comprobante/listar/$', 'principal.views.listar_comprobante'),
 	url(r'^guia/registrar/$', 'principal.views.registrar_guiaremision'),
-	url(r'^guia/listar/$', 'principal.views.listar_guiaremision'),	
+	url(r'^guia/listar/$', 'principal.views.listar_guiaremision'),
+	url(r'^ingresos/reporte_grafico/$','principal.views.reporte_grafico'),	
 
 
 
